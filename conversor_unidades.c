@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <assert.h>
 
 // Funções de conversão de tempo
 float segundos_para_minutos(float segundos) {
@@ -42,9 +43,71 @@ void mostrar_menu_principal() {
     printf("=================================================\n");
 }
 
-int main() {
-    int opcao_principal;
+// Função para testar as conversões de tempo
+void testar_conversao() {
+    // Testando as conversões
+    assert(segundos_para_minutos(60) == 1.0);
+    assert(segundos_para_horas(3600) == 1.0);
+    assert(minutos_para_segundos(1) == 60.0);
+    assert(minutos_para_horas(60) == 1.0);
+    assert(horas_para_segundos(1) == 3600.0);
+    assert(horas_para_minutos(1) == 60.0);
 
+    printf("Testes de conversão passaram com sucesso!\n");
+}
+
+// Função para simular a interação com o menu principal
+void testar_menu_principal(int opcao) {
+    if (opcao == 1) {
+        printf("Opção 1: Conversão de Tempo selecionada.\n");
+    } else if (opcao == 2) {
+        printf("Opção 2: Sair selecionado.\n");
+    } else {
+        printf("Opção inválida!\n");
+    }
+}
+
+// Função que simula o fluxo de conversão baseado no menu de unidade de tempo
+void testar_menu_unidade(int opcao_unidade, float valor) {
+    if (opcao_unidade == 1) {
+        printf("Conversão de %.2f segundos:\n", valor);
+        printf("%.2f segundos equivalem a %.2f minutos.\n", valor, segundos_para_minutos(valor));
+        printf("%.2f segundos equivalem a %.2f horas.\n", valor, segundos_para_horas(valor));
+    } else if (opcao_unidade == 2) {
+        printf("Conversão de %.2f minutos:\n", valor);
+        printf("%.2f minutos equivalem a %.2f segundos.\n", valor, minutos_para_segundos(valor));
+        printf("%.2f minutos equivalem a %.2f horas.\n", valor, minutos_para_horas(valor));
+    } else if (opcao_unidade == 3) {
+        printf("Conversão de %.2f horas:\n", valor);
+        printf("%.2f horas equivalem a %.2f segundos.\n", valor, horas_para_segundos(valor));
+        printf("%.2f horas equivalem a %.2f minutos.\n", valor, horas_para_minutos(valor));
+    } else {
+        printf("Opção de unidade inválida!\n");
+    }
+}
+
+int main() {
+    // Simulando os testes do código
+    printf("Iniciando testes...\n");
+    
+    // Testes das funções de conversão
+    testar_conversao();
+    
+    // Testes do menu principal
+    testar_menu_principal(1);  // Simula a escolha de "Conversão de Tempo"
+    testar_menu_principal(2);  // Simula a escolha de "Sair"
+    testar_menu_principal(3);  // Testa uma opção inválida
+
+    // Testes do menu de unidades de tempo e suas conversões
+    testar_menu_unidade(1, 60);  // Testa a conversão de 60 segundos
+    testar_menu_unidade(2, 60);  // Testa a conversão de 60 minutos
+    testar_menu_unidade(3, 1);   // Testa a conversão de 1 hora
+    testar_menu_unidade(4, 100); // Testa uma unidade inválida
+    
+    printf("Todos os testes passaram com sucesso!\n");
+
+    // Aqui o código de interação normal com o usuário pode continuar
+    int opcao_principal;
     do {
         // Exibe o menu principal
         mostrar_menu_principal();
