@@ -1,163 +1,129 @@
-###### Explicação do Código unidades_tempo
+<h2>🔥 Embarca Tech – Programa Conversor de Unidades em Linguagem C</h2>
+<p>Repositório destinado à criação de um Programa Conversor de Unidades em Linguagem C. O objetivo deste projeto é desenvolver um programa que permita a conversão entre diversas unidades de medida, como comprimento, peso, temperatura, entre outras, utilizando a linguagem C.</p>
 
-1. **Inclusão da Biblioteca**:
-   
-   ```
-   #include <stdio.h>
-   ```
-   
-   * A biblioteca `stdio.h` é incluída para permitir o uso de funções de entrada e saída, como `printf` (para exibir mensagens) e `scanf` (para ler entradas do usuário).
+<h2>Funções e Membros</h2>
+<table border="1">
+    <tr>
+        <td>Líder: </td>
+        <td>Mariana Barretto</td>
+    </tr>
+    <tr>
+        <td>1. Unidades de comprimento (metro, centímetro, milímetro): </td>
+        <td>Alexandro Soares</td>
+    </tr>
+    <tr>
+        <td>2. Unidades de massa (quilograma, grama, tonelada): </td>
+        <td>Israel Falcão</td>
+    </tr>
+    <tr>
+        <td>3. Unidades de volume (litro, mililitro, metros cúbicos): </td>
+        <td>Lucas Moreira</td>
+    </tr>
+    <tr>
+        <td>4. Unidades de temperatura (Celsius, Fahrenheit, Kelvin): </td>
+        <td>Helen Santos</td>
+    </tr>
+    <tr>
+        <td>5. Unidades de velocidade (km/h, m/s, mph): </td>
+        <td>Kauan Farias</td>
+    </tr>
+    <tr>
+        <td>6. Watts (W), quilowatts (kW), cavalos-vapor (cv ou hp): </td>
+        <td>Edna Rodrigues</td>
+    </tr>
+    <tr>
+        <td>7. Unidades de área (metro quadrado, centímetro quadrado): </td>
+        <td>Ylo Bittencourt</td>
+    </tr>
+    <tr>
+        <td>8. Unidades de tempo (segundos, minutos, horas): </td>
+        <td>Mariana Barretto</td>
+    </tr>
+    <tr>
+        <td>9. Bits, bytes, kilobytes (KB), megabytes (MB), gigabytes (GB), terabytes (TB): </td>
+        <td>Daniel Santos</td>
+    </tr>
+    <tr>
+        <td>10. Interface de usuário: </td>
+        <td>Mariana Barretto</td>
+    </tr>
+</table>
 
-2. **Funções de Conversão de Tempo**:
-   
-   * As funções abaixo são responsáveis por realizar as conversões entre diferentes unidades de tempo:
-     * **`segundos_para_minutos`**: Converte segundos para minutos, dividindo o valor de segundos por 60.
-     * **`segundos_para_horas`**: Converte segundos para horas, dividindo o valor de segundos por 3600.
-     * **`minutos_para_segundos`**: Converte minutos para segundos, multiplicando o valor de minutos por 60.
-     * **`minutos_para_horas`**: Converte minutos para horas, dividindo o valor de minutos por 60.
-     * **`horas_para_segundos`**: Converte horas para segundos, multiplicando o valor de horas por 3600.
-     * **`horas_para_minutos`**: Converte horas para minutos, multiplicando o valor de horas por 60.
+<h2>🖥️ Tecnologias Utilizadas</h2>
+<ul>
+    <li><h4>📌 C</h4></li>
+    <li><h4>📌 VSCode</h4></li>
+    <li><h4>📌 HTML</h4></li>
+</ul>
 
-3. **Função `mostrar_menu`**:
+<h2>📝 Explicação do Código conversor_unidades</h2>
 
-```
-void mostrar_menu() { 
-    printf("Escolha a unidade de tempo que deseja converter:\n"); 
-    printf("1. Segundos\n"); 
-    printf("2. Minutos\n"); printf("3. Horas\n"); 
-}
-```
+<h3>1. Inclusão da Biblioteca</h3>
+<pre><code>#include &lt;stdio.h&gt;</code></pre>
+<p>A biblioteca <code>stdio.h</code> é incluída para permitir o uso de funções de entrada e saída, como <code>printf</code> (para exibir mensagens) e <code>scanf</code> (para ler entradas do usuário).</p>
 
-* Esta função exibe um menu com as opções de unidades de tempo para o usuário escolher. O menu apresenta três opções: Segundos, Minutos e Horas.
-4. **Função `main`**:
-   
-   * **Declaração de Variáveis**:
-     * `unidade_tempo`: Armazena a escolha da unidade de tempo que o usuário deseja converter (1 para segundos, 2 para minutos, 3 para horas).
-     * `valor`: Armazena o valor de tempo que o usuário deseja converter.
-   * **Chamada da Função `mostrar_menu`**: O programa exibe o menu de unidades de tempo.
-   * **Leitura da Entrada do Usuário**:
-     * O programa lê a opção escolhida pelo usuário usando `scanf` e verifica se a entrada foi válida.
-   * **Validação da Opção**: O código verifica se a opção escolhida está entre 1 e 3. Se não estiver, o programa encerra com uma mensagem de erro.
-   * **Leitura do Valor de Tempo**:
-     * O programa lê o valor a ser convertido e valida a entrada.
-   * **Realização das Conversões**:
-     * Dependendo da opção escolhida pelo usuário, o programa executa as conversões para as outras unidades de tempo:
-       * Se a opção for 1 (Segundos), converte para minutos e horas.
-       * Se a opção for 2 (Minutos), converte para segundos e horas.
-       * Se a opção for 3 (Horas), converte para segundos e minutos.
-   * O programa exibe os resultados das conversões correspondentes.
+<h3>2. Funções de Conversão de Tempo</h3>
+<p>As funções abaixo são responsáveis por realizar as conversões entre diferentes unidades de tempo:</p>
+<ul>
+    <li><strong>segundos_para_minutos</strong>: Converte segundos para minutos, dividindo o valor de segundos por 60.</li>
+    <li><strong>segundos_para_horas</strong>: Converte segundos para horas, dividindo o valor de segundos por 3600.</li>
+    <li><strong>minutos_para_segundos</strong>: Converte minutos para segundos, multiplicando o valor de minutos por 60.</li>
+    <li><strong>minutos_para_horas</strong>: Converte minutos para horas, dividindo o valor de minutos por 60.</li>
+    <li><strong>horas_para_segundos</strong>: Converte horas para segundos, multiplicando o valor de horas por 3600.</li>
+    <li><strong>horas_para_minutos</strong>: Converte horas para minutos, multiplicando o valor de horas por 60.</li>
+</ul>
 
-5. **Resultado das Conversões**:
-   
-   * **Segundos para Minutos**: Calculado dividindo os segundos por 60.
-   * **Segundos para Horas**: Calculado dividindo os segundos por 3600.
-   * **Minutos para Segundos**: Calculado multiplicando os minutos por 60.
-   * **Minutos para Horas**: Calculado dividindo os minutos por 60.
-   * **Horas para Segundos**: Calculado multiplicando as horas por 3600.
-   * **Horas para Minutos**: Calculado multiplicando as horas por 60.
+<h3>3. Função <code>mostrar_menu</code></h3>
+<pre><code>void mostrar_menu() {
+    printf("Escolha a unidade de tempo que deseja converter:\n");
+    printf("1. Segundos\n");
+    printf("2. Minutos\n");
+    printf("3. Horas\n");
+}</code></pre>
+<p>Esta função exibe um menu com as opções de unidades de tempo para o usuário escolher. O menu apresenta três opções: Segundos, Minutos e Horas.</p>
 
-### Compilação e Execução do Programa
-
-1. **Compilação**:Para compilar o código, use o comando abaixo no terminal:
-
-```
-gcc conversao_tempo.c -o conversao_tempo
-```
-
-2. **Execução**:Após compilar, execute o programa com o comando:
-
-```
-./conversao_tempo
-```
-
-
-
-O programa pedirá para você escolher a unidade de tempo e inserir um valor para ser convertido, e exibirá os resultados das conversões.
-
-
-
-
-
-
-
-###### Explicação do Código conversao_tempo
-
-1. **Inclusão da Biblioteca**:
-
-```
-#include <stdio.h>
-```
-
-* A biblioteca `stdio.h` é incluída para permitir o uso de funções de entrada e saída, como `printf` (para exibir mensagens) e `scanf` (para ler entradas do usuário).
-2. **Funções de Conversão de Tempo**:
-* As funções abaixo são responsáveis por realizar as conversões entre diferentes unidades de tempo:
-  * **`segundos_para_minutos`**: Converte segundos para minutos, dividindo o valor de segundos por 60.
-  * **`segundos_para_horas`**: Converte segundos para horas, dividindo o valor de segundos por 3600.
-  * **`minutos_para_segundos`**: Converte minutos para segundos, multiplicando o valor de minutos por 60.
-  * **`minutos_para_horas`**: Converte minutos para horas, dividindo o valor de minutos por 60.
-  * **`horas_para_segundos`**: Converte horas para segundos, multiplicando o valor de horas por 3600.
-  * **`horas_para_minutos`**: Converte horas para minutos, multiplicando o valor de horas por 60.
-3. **Função `mostrar_menu`**:
-
-```
-void mostrar_menu() {     printf("Escolha a unidade de tempo que deseja converter:\n");     printf("1. Segundos\n");     printf("2. Minutos\n"); printf("3. Horas\n"); }
-```
-
-* Esta função exibe um menu com as opções de unidades de tempo para o usuário escolher. O menu apresenta três opções: Segundos, Minutos e Horas.
-4. **Função `mostrar_menu_principal`**:
-
-```
-void mostrar_menu_principal() {
+<h3>4. Função <code>mostrar_menu_principal</code></h3>
+<pre><code>void mostrar_menu_principal() {
     printf("=================================================\n");
     printf("Escolha o tipo de conversão que deseja realizar:\n");
     printf("1. Conversão de Tempo\n");
     printf("2. Sair\n");
     printf("=================================================\n");
-}
-```
+}</code></pre>
+<p>A função <code>mostrar_menu_principal</code> exibe o menu principal onde o usuário pode escolher entre realizar uma conversão de tempo ou sair do programa.</p>
 
-- A função `mostrar_menu_principal` exibe o menu principal onde o usuário pode escolher entre realizar uma conversão de tempo ou sair do programa.
-5. **Função `main`**:
-   A função `main` é responsável por orquestrar o fluxo do programa. Ela exibe os menus e permite que o usuário faça escolhas.
-* **Declaração de Variáveis**:
-  
-  * `opcao_principal`: Armazena a escolha do usuário no menu principal (1 para conversão de tempo, 2 para sair).
-  * `unidade_tempo`: Armazena a escolha do usuário sobre qual unidade de tempo deseja converter.
-  * `valor`: Armazena o valor de tempo que o usuário deseja converter.
+<h3>5. Função <code>main</code></h3>
+<p>A função <code>main</code> é responsável por orquestrar o fluxo do programa. Ela exibe os menus e permite que o usuário faça escolhas.</p>
+<ul>
+    <li><strong>Declaração de Variáveis</strong>:<br>
+        <code>opcao_principal</code>: Armazena a escolha do usuário no menu principal (1 para conversão de tempo, 2 para sair).<br>
+        <code>unidade_tempo</code>: Armazena a escolha do usuário sobre qual unidade de tempo deseja converter.<br>
+        <code>valor</code>: Armazena o valor de tempo que o usuário deseja converter.
+    </li>
+    <li><strong>Exibição dos Menus</strong>: O programa exibe o menu principal e o menu de conversão de tempo com a função <code>mostrar_menu_principal</code> e <code>mostrar_menu</code>, respectivamente.</li>
+    <li><strong>Leitura da Entrada do Usuário</strong>: O programa lê as opções de menu e o valor a ser convertido, verificando se a entrada é válida.</li>
+    <li><strong>Realização das Conversões</strong>: Dependendo da escolha do usuário no menu de conversão, o programa realiza a conversão do valor inserido e exibe os resultados:<br>
+        Se a unidade escolhida for "Segundos", o programa converte para minutos e horas.<br>
+        Se a unidade escolhida for "Minutos", o programa converte para segundos e horas.<br>
+        Se a unidade escolhida for "Horas", o programa converte para segundos e minutos.
+    </li>
+</ul>
 
-* **Exibição dos Menus**: O programa exibe o menu principal e o menu de conversão de tempo com a função `mostrar_menu_principal` e `mostrar_menu`, respectivamente.
+<h3>6. Resultado das Conversões</h3>
+<ul>
+    <li><strong>Segundos para Minutos</strong>: Calculado dividindo os segundos por 60.</li>
+    <li><strong>Segundos para Horas</strong>: Calculado dividindo os segundos por 3600.</li>
+    <li><strong>Minutos para Segundos</strong>: Calculado multiplicando os minutos por 60.</li>
+    <li><strong>Minutos para Horas</strong>: Calculado dividindo os minutos por 60.</li>
+    <li><strong>Horas para Segundos</strong>: Calculado multiplicando as horas por 3600.</li>
+    <li><strong>Horas para Minutos</strong>: Calculado multiplicando as horas por 60.</li>
+</ul>
 
-* **Leitura da Entrada do Usuário**: O programa lê as opções de menu e o valor a ser convertido, verificando se a entrada é válida.
+<h2>Compilação e Execução do Programa</h2>
+<p>1. <strong>Compilação</strong>: Para compilar o código, use o comando abaixo no terminal:</p>
+<pre><code>gcc conversor_unidades.c -o conversor_unidades</code></pre>
 
-* **Realização das Conversões**: Dependendo da escolha do usuário no menu de conversão, o programa realiza a conversão do valor inserido e exibe os resultados:
-  
-  * Se a unidade escolhida for "Segundos", o programa converte para minutos e horas.
-  * Se a unidade escolhida for "Minutos", o programa converte para segundos e horas.
-  * Se a unidade escolhida for "Horas", o programa converte para segundos e minutos.
+<p>2. <strong>Execução</strong>: Após compilar, execute o programa com o comando:</p>
+<pre><code>./conversor_unidades</code></pre>
 
-6.**Resultado das Conversões**:
-
-* **Segundos para Minutos**: Calculado dividindo os segundos por 60.
-* **Segundos para Horas**: Calculado dividindo os segundos por 3600.
-* **Minutos para Segundos**: Calculado multiplicando os minutos por 60.
-* **Minutos para Horas**: Calculado dividindo os minutos por 60.
-* **Horas para Segundos**: Calculado multiplicando as horas por 3600.
-* **Horas para Minutos**: Calculado multiplicando as horas por 60.
-
-### Compilação e Execução do Programa
-
-1. **Compilação**:Para compilar o código, use o comando abaixo no terminal:
-   
-   ```
-    gcc conversor_unidades.c -o conversor_unidades
-   ```
-
-2. **Execução**:Após compilar, execute o programa com o comando:
-   
-   ```
-   ./conversor_unidades
-   ```
-   
-   
-
-O programa pedirá para você escolher o tipo de conversor de unidades, e exibirá os resultados das conversões.
+<p>O programa pedirá para você escolher o tipo de conversor de unidades, e exibirá os resultados das conversões.</p>
