@@ -1,6 +1,31 @@
-#include <stdio.h> // Inclui a biblioteca padrão de entrada/saída
+#include <stdio.h>
 
-// Função para mostrar o menu de opções
+// Funções de conversão de tempo
+float segundos_para_minutos(float segundos) {
+    return segundos / 60;
+}
+
+float segundos_para_horas(float segundos) {
+    return segundos / 3600;
+}
+
+float minutos_para_segundos(float minutos) {
+    return minutos * 60;
+}
+
+float minutos_para_horas(float minutos) {
+    return minutos / 60;
+}
+
+float horas_para_segundos(float horas) {
+    return horas * 3600;
+}
+
+float horas_para_minutos(float horas) {
+    return horas * 60;
+}
+
+// Função para mostrar o menu de escolha de unidade de tempo
 void mostrar_menu() {
     printf("Escolha a unidade de tempo que deseja converter:\n");
     printf("1. Segundos\n");
@@ -9,46 +34,44 @@ void mostrar_menu() {
 }
 
 int main() {
-    int opcao;
-    float tempo, resultado;
+    int unidade_tempo; // Variável para armazenar a escolha da unidade de tempo
+    float valor; // Variável para armazenar o valor a ser convertido
 
-    mostrar_menu(); // Mostra o menu para o usuário
-    printf("Digite sua opção (1/2/3): ");
-    scanf("%d", &opcao); // Lê a opção do usuário
-
-    // Processa a entrada de acordo com a opção selecionada
-    switch (opcao) {
-        case 1: // Se a opção for 1 - Segundos
-            printf("Digite o tempo em segundos: ");
-            scanf("%f", &tempo);
-            resultado = tempo / 60; // Converte segundos para minutos
-            printf("%.2f segundos equivalem a %.2f minutos.\n", tempo, resultado);
-            resultado = tempo / 3600; // Converte segundos para horas
-            printf("%.2f segundos equivalem a %.2f horas.\n", tempo, resultado);
-            break;
-
-        case 2: // Se a opção for 2 - Minutos
-            printf("Digite o tempo em minutos: ");
-            scanf("%f", &tempo);
-            resultado = tempo * 60; // Converte minutos para segundos
-            printf("%.2f minutos equivalem a %.2f segundos.\n", tempo, resultado);
-            resultado = tempo / 60; // Converte minutos para horas
-            printf("%.2f minutos equivalem a %.2f horas.\n", tempo, resultado);
-            break;
-
-        case 3: // Se a opção for 3 - Horas
-            printf("Digite o tempo em horas: ");
-            scanf("%f", &tempo);
-            resultado = tempo * 3600; // Converte horas para segundos
-            printf("%.2f horas equivalem a %.2f segundos.\n", tempo, resultado);
-            resultado = tempo * 60; // Converte horas para minutos
-            printf("%.2f horas equivalem a %.2f minutos.\n", tempo, resultado);
-            break;
-
-        default: // Se a opção for inválida
-            printf("Opção inválida! Por favor, escolha 1, 2 ou 3.\n");
-            break;
+    // Exibe o menu de escolha da unidade
+    mostrar_menu();
+    printf("Digite sua opção (1/2/3): "); // Solicita a escolha da unidade
+    if (scanf("%d", &unidade_tempo) != 1) { // Verifica se a entrada foi lida corretamente
+        printf("Erro na entrada! Tente novamente.\n");
+        return 1; // Encerra o programa em caso de erro na entrada
     }
 
-    return 0; // Indica que o programa terminou com sucesso
+    // Verifica se a escolha é válida
+    if (unidade_tempo < 1 || unidade_tempo > 3) {
+        printf("Opção inválida! O programa será encerrado.\n");
+        return 1; // Encerra o programa caso a opção seja inválida
+    }
+
+    // Solicita o valor a ser convertido
+    printf("Digite o valor a ser convertido: ");
+    if (scanf("%f", &valor) != 1) { // Verifica se o valor foi lido corretamente
+        printf("Erro na entrada do valor! Tente novamente.\n");
+        return 1; // Encerra o programa em caso de erro na entrada do valor
+    }
+
+    // Realizando as conversões dependendo da unidade escolhida
+    if (unidade_tempo == 1) { // Caso a unidade escolhida seja Segundos
+        printf("\nResultados das conversões para %.2f segundos:\n", valor);
+        printf("%.2f segundos equivalem a %.2f minutos.\n", valor, segundos_para_minutos(valor)); // Converte para minutos
+        printf("%.2f segundos equivalem a %.2f horas.\n", valor, segundos_para_horas(valor));   // Converte para horas
+    } else if (unidade_tempo == 2) { // Caso a unidade escolhida seja Minutos
+        printf("\nResultados das conversões para %.2f minutos:\n", valor);
+        printf("%.2f minutos equivalem a %.2f segundos.\n", valor, minutos_para_segundos(valor)); // Converte para segundos
+        printf("%.2f minutos equivalem a %.2f horas.\n", valor, minutos_para_horas(valor));     // Converte para horas
+    } else if (unidade_tempo == 3) { // Caso a unidade escolhida seja Horas
+        printf("\nResultados das conversões para %.2f horas:\n", valor);
+        printf("%.2f horas equivalem a %.2f segundos.\n", valor, horas_para_segundos(valor));   // Converte para segundos
+        printf("%.2f horas equivalem a %.2f minutos.\n", valor, horas_para_minutos(valor));     // Converte para minutos
+    }
+
+    return 0; // Finaliza o programa
 }
