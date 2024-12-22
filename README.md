@@ -64,7 +64,7 @@ void mostrar_menu() {
 gcc conversao_tempo.c -o conversao_tempo
 ```
 
-2.  **Execução**:Após compilar, execute o programa com o comando:
+2. **Execução**:Após compilar, execute o programa com o comando:
 
 ```
 ./conversao_tempo
@@ -149,7 +149,7 @@ void mostrar_menu_principal() {
 1. **Compilação**:Para compilar o código, use o comando abaixo no terminal:
    
    ```
-    gcc conversor_unidades.c -o conversao_tempo
+    gcc conversor_unidades.c -o conversor_unidades
    ```
 
 2. **Execução**:Após compilar, execute o programa com o comando:
