@@ -86,14 +86,6 @@ void mostrar_menu_temperatura() {
     printf("3. Kelvin\n");
 }
 
-// Função para mostrar o menu de escolha de unidade de tempo
-void mostrar_menu_tempo() {
-    printf("Escolha a unidade de tempo que deseja converter:\n");
-    printf("1. Segundos\n");
-    printf("2. Minutos\n");
-    printf("3. Horas\n");
-}
-
 // Função para mostrar o menu principal
 void mostrar_menu_principal() {
     printf("=================================================\n");
