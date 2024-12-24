@@ -275,6 +275,36 @@ int main() {
                 break;
             }
 
+            case 6: { // Conversão de potencia
+                int unidade_potencia;
+                float valor;
+
+                // Exibe o menu de escolha da unidade
+                mostrar_menu_potencia();
+                printf("Digite sua opção (1/2/3): ");
+                if (scanf("%d", &unidade_potencia) != 1) {
+                    printf("Erro na entrada! Tente novamente.\n");
+                    return 1; // Encerra o programa em caso de erro na entrada
+                }
+
+                // Verifica se a escolha é válida
+                if (unidade_potencia < 1 || unidade_potencia > 3) {
+                    printf("Opção inválida! Tente novamente.\n");
+                    continue; // Volta para o início do menu principal
+                }
+
+                // Solicita o valor a ser convertido
+                printf("Digite o valor a ser convertido: ");
+                if (scanf("%f", &valor) != 1) {
+                    printf("Erro na entrada! Tente novamente.\n");
+                    return 1; // Encerra o programa em caso de erro na entrada
+                }
+
+                // Realizando as conversões dependendo da unidade escolhida
+                testar_menu_unidade_potencia(unidade_potencia, valor);
+                break;
+            }
+
             case 8: { // Conversão de tempo
                 int unidade_tempo;
                 float valor;
