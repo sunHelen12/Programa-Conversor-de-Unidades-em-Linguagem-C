@@ -134,7 +134,13 @@ void mostrar_menu_temperatura() {
     printf("3. Kelvin\n");
 }
 
-
+// Função para mostrar o menu de escolha de unidade de potência
+void mostrar_menu_potencia() {
+    printf("Escolha a unidade de potência que deseja converter:\n");
+    printf("1. Watts (W)\n");
+    printf("2. Quilowatts (kW)\n");
+    printf("3. Cavalo-vapor (CV)\n");
+}
 
 // Função para mostrar o menu de escolha de unidade de tempo
 void mostrar_menu_tempo() {
