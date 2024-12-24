@@ -77,6 +77,39 @@ float horas_para_minutos(float horas) {
     return horas * 60;
 }
 
+//Funcões de conversão de velocidade
+float kmParaMs(float valor) {
+    return valor * 0.277778;
+}
+
+float kmParaMph(float valor) {
+    return valor * 0.621371;
+}
+
+float msParaKm(float valor) {
+    return valor * 3.6;
+}
+
+float msParaMph(float valor) {
+    return valor * 2.23694;
+}
+
+float mphParaKm(float valor) {
+    return valor * 1.60934;
+}
+
+float mphParaMs(float valor) {
+    return valor * 0.44704;
+}
+
+float metrosParaCentimetros(float metros) {
+    return metros * 10000; // 1 m² = 10,000 cm²
+}
+
+float centimetrosParaMetros(float centimetros) {
+    return centimetros / 10000;
+}
+
 // Função para testar as conversões de temperatura
 void testar_conversao_temperatura() {
     // Testando as conversões de temperatura
@@ -113,6 +146,31 @@ void testar_conversao_potencia() {
     printf("Testes de conversão de potência passaram com sucesso!\n");
 }
 
+//Função para testar as convers~pes de velocidade
+void testar_conversao_velocidade() {
+    const float tolerancia = 0.001; // Ajuste na tolerância
+
+    // Testando km/h para m/s
+    assert(fabs(kmParaMs(100.0) - 27.7778) < tolerancia);
+
+    // Testando km/h para mph
+    assert(fabs(kmParaMph(100.0) - 62.1371) < tolerancia);
+
+    // Testando m/s para km/h
+    assert(fabs(msParaKm(27.7778) - 100.0) < tolerancia);
+
+    // Testando m/s para mph
+    assert(fabs(msParaMph(10.0) - 22.3694) < tolerancia);
+
+    // Testando mph para km/h
+    assert(fabs(mphParaKm(62.1371) - 100.0) < tolerancia);
+
+    // Testando mph para m/s
+    assert(fabs(mphParaMs(22.3694) - 10.0) < tolerancia);
+
+    printf("Todos os testes de conversão de velocidade passaram com sucesso!\n");
+}
+
 // Função para testar as conversões de tempo
 void testar_conversao() {
     // Testando as conversões
@@ -124,6 +182,14 @@ void testar_conversao() {
     assert(horas_para_minutos(1) == 60.0);
 
     printf("Testes de conversão de tempo passaram com sucesso!\n");
+}
+
+void testar_conversao_area() {
+    // Testando as conversões de área
+    assert(fabs(metrosParaCentimetros(1.0) - 10000.0) < 0.0001); // Comparação com tolerância
+    assert(fabs(centimetrosParaMetros(10000.0) - 1.0) < 0.0001); // Comparação com tolerância
+
+    printf("Testes de conversão de área passaram com sucesso!\n");
 }
 
 // Função para mostrar o menu de escolha de unidade de temperatura
@@ -148,6 +214,12 @@ void mostrar_menu_tempo() {
     printf("1. Segundos\n");
     printf("2. Minutos\n");
     printf("3. Horas\n");
+}
+
+void mostrar_menu_area() {
+    printf("Escolha a unidade de área que deseja converter:\n");
+    printf("1. Metros quadrados\n");
+    printf("2. Centímetros quadrados\n");
 }
 
 // Função para mostrar o menu principal
@@ -224,14 +296,62 @@ void testar_menu_unidade_temperatura(int opcao_unidade, float valor) {
     }
 }
 
+// Função para testar a conversão de velocidade
+void testar_menu_unidade_velocidade(int opcao_origem, int opcao_destino, float valor) {
+    if (opcao_origem == 1) { // Origem: km/h
+        printf("Conversão de %.2f km/h:\n", valor);
+        if (opcao_destino == 2) {
+            printf("%.2f km/h equivalem a %.2f m/s.\n", valor, kmParaMs(valor)); // km/h para m/s
+        } else if (opcao_destino == 3) {
+            printf("%.2f km/h equivalem a %.2f mph.\n", valor, kmParaMph(valor)); // km/h para mph
+        } else {
+            printf("Opção de destino inválida!\n");
+        }
+    } else if (opcao_origem == 2) { // Origem: m/s
+        printf("Conversão de %.2f m/s:\n", valor);
+        if (opcao_destino == 1) {
+            printf("%.2f m/s equivalem a %.2f km/h.\n", valor, msParaKm(valor)); // m/s para km/h
+        } else if (opcao_destino == 3) {
+            printf("%.2f m/s equivalem a %.2f mph.\n", valor, msParaMph(valor)); // m/s para mph
+        } else {
+            printf("Opção de destino inválida!\n");
+        }
+    } else if (opcao_origem == 3) { // Origem: mph
+        printf("Conversão de %.2f mph:\n", valor);
+        if (opcao_destino == 1) {
+            printf("%.2f mph equivalem a %.2f km/h.\n", valor, mphParaKm(valor)); // mph para km/h
+        } else if (opcao_destino == 2) {
+            printf("%.2f mph equivalem a %.2f m/s.\n", valor, mphParaMs(valor)); // mph para m/s
+        } else {
+            printf("Opção de destino inválida!\n");
+        }
+    } else {
+        printf("Opção de unidade de origem inválida!\n");
+    }
+}
+
+void testar_menu_unidade_area(int opcao_unidade, float valor) {
+    if (opcao_unidade == 1) {
+        printf("Conversão de %.2f metros quadrados:\n", valor);
+        printf("%.2f metros quadrados equivalem a %.2f centímetros quadrados.\n", valor, metrosParaCentimetros(valor));
+    } else if (opcao_unidade == 2) {
+        printf("Conversão de %.2f centímetros quadrados:\n", valor);
+        printf("%.2f centímetros quadrados equivalem a %.2f metros quadrados.\n", valor, centimetrosParaMetros(valor));
+    } else {
+        printf("Opção de unidade inválida!\n");
+    }
+}
+
 int main() {
     // Simulando os testes do código
     printf("Iniciando testes...\n");
-    
+
     // Testes das funções de conversão
     testar_conversao_temperatura();
     testar_conversao_potencia();
+    testar_conversao_velocidade();
     testar_conversao();
+    testar_conversao_area();
 
     // Interação com o usuário
     int opcao_principal;
@@ -275,6 +395,44 @@ int main() {
                 break;
             }
 
+            case 5:{
+                float valor;
+                char unidadeOrigem, unidadeDestino;
+
+                // Pergunta ao usuário qual unidade de origem ele quer converter
+                printf("Digite a unidade de origem (k = km/h, m = m/s, p = mph): ");
+                scanf(" %c", &unidadeOrigem);
+
+                // Pergunta ao usuário qual unidade de destino ele quer
+                printf("Digite a unidade de destino (k = km/h, m = m/s, p = mph): ");
+                scanf(" %c", &unidadeDestino);
+
+                // Pergunta o valor da velocidade
+                printf("Digite o valor da velocidade: ");
+                scanf("%f", &valor);
+
+                // Lógica para chamar as funções específicas diretamente
+                if (unidadeOrigem == 'k' && unidadeDestino == 'm') {
+                    printf("%.2f km/h = %.2f m/s\n", valor, kmParaMs(valor));
+                } else if (unidadeOrigem == 'k' && unidadeDestino == 'p') {
+                    printf("%.2f km/h = %.2f mph\n", valor, kmParaMph(valor));
+                } else if (unidadeOrigem == 'm' && unidadeDestino == 'k') {
+                    printf("%.2f m/s = %.2f km/h\n", valor, msParaKm(valor));
+                } else if (unidadeOrigem == 'm' && unidadeDestino == 'p') {
+                    printf("%.2f m/s = %.2f mph\n", valor, msParaMph(valor));
+                } else if (unidadeOrigem == 'p' && unidadeDestino == 'k') {
+                    printf("%.2f mph = %.2f km/h\n", valor, mphParaKm(valor));
+                } else if (unidadeOrigem == 'p' && unidadeDestino == 'm') {
+                    printf("%.2f mph = %.2f m/s\n", valor, mphParaMs(valor));
+                } else {
+                    printf("Conversão inválida. Verifique as unidades de origem e destino.\n");
+                }
+
+                // Realizando as conversões dependendo da unidade escolhida
+                testar_menu_unidade_velocidade(unidadeOrigem, unidadeDestino, valor);
+                break;
+            }
+
             case 6: { // Conversão de potencia
                 int unidade_potencia;
                 float valor;
@@ -302,6 +460,36 @@ int main() {
 
                 // Realizando as conversões dependendo da unidade escolhida
                 testar_menu_unidade_potencia(unidade_potencia, valor);
+                break;
+            }
+
+            case 7: {
+                int unidade_area;
+                float valor;
+
+                // Exibe o menu de escolha da unidade
+                mostrar_menu_area();
+                printf("Digite sua opção (1/2): ");
+                if (scanf("%d", &unidade_area) != 1) {
+                    printf("Erro na entrada! Tente novamente.\n");
+                    return 1; // Encerra o programa em caso de erro na entrada
+                }
+
+                // Verifica se a escolha é válida
+                if (unidade_area < 1 || unidade_area > 2) {
+                    printf("Opção inválida! Tente novamente.\n");
+                    continue; // Volta para o início do menu principal
+                }
+
+                // Solicita o valor a ser convertido
+                printf("Digite o valor a ser convertido: ");
+                if (scanf("%f", &valor) != 1) {
+                    printf("Erro na entrada! Tente novamente.\n");
+                    return 1; // Encerra o programa em caso de erro na entrada
+                }
+
+                // Realizando as conversões dependendo da unidade escolhida
+                testar_menu_unidade_area(unidade_area, valor);
                 break;
             }
 
