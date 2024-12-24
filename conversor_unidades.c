@@ -230,7 +230,8 @@ int main() {
     
     // Testes das funções de conversão
     testar_conversao_temperatura();
-    
+    testar_conversao_potencia();
+    testar_conversao();
 
     // Interação com o usuário
     int opcao_principal;
