@@ -1,4 +1,4 @@
-#include <stdio.h>
+# include <stdio.h>
 
 float metrosParaCentimetros(float metros) {
     return metros * 10000; // 1 m² = 10,000 cm²
@@ -36,7 +36,7 @@ int main() {
                 printf("%.2f metro(s) quadrado(s) são %.2f centímetro(s) quadrado(s)\n", valor, metrosParaCentimetros(valor));
                 break;
             case 2:
-                printf("%.2f centímetro(s) quadrado(s) são %.2f metro(s) quadrado(s)\n", valor, centimetrosParaMetros(valor));
+                printf("%.2f centímetro(s) quadrado(s) são %f metro(s) quadrado(s)\n", valor, centimetrosParaMetros(valor));
                 break;
             default:
                 printf("Opção inválida\n");
