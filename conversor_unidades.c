@@ -33,7 +33,7 @@ float watts_para_kilowatts (float watts) {
 }
 
 float watts_para_cavalo_vapor (float watts) {
-    return watts/735.49875;
+    return watts/735.50;
 }
 
 float kilowatts_para_watts (float kilowatts) {
@@ -41,15 +41,15 @@ float kilowatts_para_watts (float kilowatts) {
 }
 
 float kilowatts_para_cavalo_vapor (float kilowatts) {
-    return kilowatts*1000.0/735.49875;
+    return kilowatts*1000.0/735.50;
 }
 
 float cavalo_vapor_para_watts (float cv) {
-    return cv*735.49875;
+    return cv*735.50;
 }
 
 float cavalo_vapor_para_kilowatts (float cv) {
-    return cv*735.49875/1000.0;
+    return cv*735.50/1000.0;
 }
 
 // Funções de conversão de tempo
@@ -96,19 +96,19 @@ void testar_conversao_potencia() {
     assert(fabs(watts_para_kilowatts(1000.0) - 1.0) < 0.0001);
 
     // Testando watts para cavalo-vapor
-    assert(fabs(watts_para_cavalo_vapor(735.49875) - 1.0) < 0.0001);
+    assert(fabs(watts_para_cavalo_vapor(735.50) - 1.0) < 0.0001);
 
     // Testando kilowatts para watts
     assert(fabs(kilowatts_para_watts(1.0) - 1000.0) < 0.0001);
 
     // Testando kilowatts para cavalo-vapor
-    assert(fabs(kilowatts_para_cavalo_vapor(1.0) - 1.0) < 0.0001);
+    assert(fabs(kilowatts_para_cavalo_vapor(1.0) - 1.35962) < 0.0001);
 
     // Testando cavalo-vapor para watts
-    assert(fabs(cavalo_vapor_para_watts(1.0) - 735.49875) < 0.0001);
+    assert(fabs(cavalo_vapor_para_watts(1.0) - 735.50) < 0.0001);
 
     // Testando cavalo-vapor para kilowatts
-    assert(fabs(cavalo_vapor_para_kilowatts(1.0) - 0.73549875) < 0.0001);
+    assert(fabs(cavalo_vapor_para_kilowatts(1.0) - 0.7355) < 0.0001);
 
     printf("Testes de conversão de potência passaram com sucesso!\n");
 }
@@ -190,16 +190,16 @@ void testar_menu_unidade_tempo(int opcao_unidade, float valor) {
 void testar_menu_unidade_potencia(int opcao_unidade, float valor) {
     if (opcao_unidade == 1) { // Conversão de Watts
         printf("Conversão de %.2f Watts:\n", valor);
-        printf("%.2f Watts equivalem a %.2f Quilowatts.\n", valor, watts_para_quilowatts(valor));
-        printf("%.2f Watts equivalem a %.2f Cavalos-vapor.\n", valor, watts_para_cavalos(valor));
+        printf("%.2f Watts equivalem a %.2f Quilowatts.\n", valor, watts_para_kilowatts(valor));
+        printf("%.2f Watts equivalem a %.2f Cavalos-vapor.\n", valor, watts_para_cavalo_vapor(valor));
     } else if (opcao_unidade == 2) { // Conversão de Quilowatts
         printf("Conversão de %.2f Quilowatts:\n", valor);
-        printf("%.2f Quilowatts equivalem a %.2f Watts.\n", valor, quilowatts_para_watts(valor));
-        printf("%.2f Quilowatts equivalem a %.2f Cavalos-vapor.\n", valor, quilowatts_para_cavalos(valor));
+        printf("%.2f Quilowatts equivalem a %.2f Watts.\n", valor, kilowatts_para_watts(valor));
+        printf("%.2f Quilowatts equivalem a %.2f Cavalos-vapor.\n", valor, kilowatts_para_cavalo_vapor(valor));
     } else if (opcao_unidade == 3) { // Conversão de Cavalos-vapor
         printf("Conversão de %.2f Cavalos-vapor:\n", valor);
-        printf("%.2f Cavalos-vapor equivalem a %.2f Watts.\n", valor, cavalos_para_watts(valor));
-        printf("%.2f Cavalos-vapor equivalem a %.2f Quilowatts.\n", valor, cavalos_para_quilowatts(valor));
+        printf("%.2f Cavalos-vapor equivalem a %.2f Watts.\n", valor, cavalo_vapor_para_watts(valor));
+        printf("%.2f Cavalos-vapor equivalem a %.2f Quilowatts.\n", valor, cavalo_vapor_para_kilowatts(valor));
     } else {
         printf("Opção de unidade inválida!\n");
     }
