@@ -90,6 +90,29 @@ void testar_conversao_temperatura() {
     printf("Testes de conversão de temperatura passaram com sucesso!\n");
 }
 
+// Função para testar as conversões de potencia
+void testar_conversao_potencia() {
+    // Testando watts para kilowatts
+    assert(fabs(watts_para_kilowatts(1000.0) - 1.0) < 0.0001);
+
+    // Testando watts para cavalo-vapor
+    assert(fabs(watts_para_cavalo_vapor(735.49875) - 1.0) < 0.0001);
+
+    // Testando kilowatts para watts
+    assert(fabs(kilowatts_para_watts(1.0) - 1000.0) < 0.0001);
+
+    // Testando kilowatts para cavalo-vapor
+    assert(fabs(kilowatts_para_cavalo_vapor(1.0) - 1.0) < 0.0001);
+
+    // Testando cavalo-vapor para watts
+    assert(fabs(cavalo_vapor_para_watts(1.0) - 735.49875) < 0.0001);
+
+    // Testando cavalo-vapor para kilowatts
+    assert(fabs(cavalo_vapor_para_kilowatts(1.0) - 0.73549875) < 0.0001);
+
+    printf("Testes de conversão de potência passaram com sucesso!\n");
+}
+
 // Função para testar as conversões de tempo
 void testar_conversao() {
     // Testando as conversões
@@ -103,13 +126,15 @@ void testar_conversao() {
     printf("Testes de conversão de tempo passaram com sucesso!\n");
 }
 
-// Função para mostrar o menu de escolha de unidade de tempo
+// Função para mostrar o menu de escolha de unidade de temperatura
 void mostrar_menu_temperatura() {
     printf("Escolha a unidade de temperatura que deseja converter:\n");
     printf("1. Celsius\n");
     printf("2. Fahrenheit\n");
     printf("3. Kelvin\n");
 }
+
+
 
 // Função para mostrar o menu de escolha de unidade de tempo
 void mostrar_menu_tempo() {
