@@ -58,11 +58,28 @@
 
 <h2>📝 Explicação do Código conversor_unidades</h2>
 
-<h3>1. Inclusão da Biblioteca</h3>
+<h3>1. Inclusão de Bibliotecas</h3>
+<pre><code>#include &lt;assert.h&gt;</code></pre>
+<p>A biblioteca <code>assert.h</code> fornece uma macro chamada <code>assert</code>, usada para verificar expressões lógicas durante a execução de um programa, especialmente em cenários de depuração. Útil para a verificação e validação se condições lógicas no código são verdadeiras automaticamente.</p>
 <pre><code>#include &lt;stdio.h&gt;</code></pre>
 <p>A biblioteca <code>stdio.h</code> é incluída para permitir o uso de funções de entrada e saída, como <code>printf</code> (para exibir mensagens) e <code>scanf</code> (para ler entradas do usuário).</p>
+<pre><code>#include &lt;math.h&gt;</code></pre>
+<p>A biblioteca <code>math.h</code> fornece funções matemáticas avançadas, como operações trigonométricas, exponenciais, logaritmos, etc. Necessária para operação <code>fabs</code> (valor absoluto de números em ponto flutuante).</p>
 
-<h3>2. Funções de Conversão de Tempo</h3>
+<h3>2. Funções de Conversão</h3>
+
+<h4>2.6. Funções de Conversão de Potência</h4>
+<p>As funções abaixo são responsáveis por realizar as conversões entre diferentes unidades de potência:</p>
+<ul>
+    <li><strong>watts_para_kilowatts</strong>: Converte watts para quilowatts, dividindo o valor de watts por 1000,0.</li>
+    <li><strong>watts_para_cavalo_vapor</strong>: Converte watts para cavalo-vapor, dividindo o valor de watts por 735,50.</li>
+    <li><strong>kilowatts_para_watts</strong>: Converte quilowatts para watts, multiplicando o valor de quilowatts por 1000,0.</li>
+    <li><strong>kilowatts_para_cavalo_vapor</strong>: Converte quilowatts para cavalo-vapor, multiplicando o valor de quilowatts por 1000,0 e dividindo por 735,50.</li>
+    <li><strong>cavalo_vapor_para_watts</strong>: Converte cavalo-vapor para watts, multiplicando o valor de cavalo-vapor por 735,50.</li>
+    <li><strong>cavalo_vapor_para_kilowatts</strong>: Converte cavalo-vapor para quilowatts, multiplicando o valor de cavalo-vapor por 735,50 e dividindo por 1000,0.</li>
+</ul>
+
+<h4>2.8. Funções de Conversão de Tempo</h4>
 <p>As funções abaixo são responsáveis por realizar as conversões entre diferentes unidades de tempo:</p>
 <ul>
     <li><strong>segundos_para_minutos</strong>: Converte segundos para minutos, dividindo o valor de segundos por 60.</li>
@@ -73,8 +90,23 @@
     <li><strong>horas_para_minutos</strong>: Converte horas para minutos, multiplicando o valor de horas por 60.</li>
 </ul>
 
-<h3>3. Função <code>mostrar_menu</code></h3>
-<pre><code>void mostrar_menu() {
+<h3>3. Funções para Testes das Funções de Conversão</h3>
+
+<p>São funções específicas para cada função de conversão, usadas para verificar se as conversões estão corretas para valores padrões unitários. Se o valor calculado não estiver dentro da margem esperada, o programa encerrará e exibirá um erro.<p>
+
+<h3>4. Funções para Mostrar Menu de Opções</h3>
+
+<h4>4.6. Função <code>mostrar_menu_potencia</code></h4>
+<pre><code>void mostrar_menu_potencia() {
+    printf("Escolha a unidade de potencia que deseja converter:\n");
+    printf("1. Watts (W)\n");
+    printf("2. Quilowatts (kW)\n");
+    printf("3. Cavalo-vapor (CV)\n");
+}</code></pre>
+<p>Esta função exibe um menu com as opções de unidades de potencia para o usuário escolher. O menu apresenta três opções: Watts, Quilowatts e Cavalo-vapor.</p>
+
+<h4>4.8. Função <code>mostrar_menu_tempo</code></h4>
+<pre><code>void mostrar_menu_tempo() {
     printf("Escolha a unidade de tempo que deseja converter:\n");
     printf("1. Segundos\n");
     printf("2. Minutos\n");
@@ -82,41 +114,42 @@
 }</code></pre>
 <p>Esta função exibe um menu com as opções de unidades de tempo para o usuário escolher. O menu apresenta três opções: Segundos, Minutos e Horas.</p>
 
-<h3>4. Função <code>mostrar_menu_principal</code></h3>
+<h3>5. Função <code>mostrar_menu_principal</code></h3>
 <pre><code>void mostrar_menu_principal() {
     printf("=================================================\n");
     printf("Escolha o tipo de conversão que deseja realizar:\n");
-    printf("1. Conversão de Tempo\n");
-    printf("2. Sair\n");
+    printf("1. Conversão de Comprimento\n");
+    printf("2. Conversão de Massa\n");
+    printf("3. Conversão de Volume\n");
+    printf("4. Conversão de Temperatura\n");
+    printf("5. Conversão de Velocidade\n");
+    printf("6. Conversão de Potência\n");
+    printf("7. Conversão de Área\n");
+    printf("8. Conversão de Tempo\n");
+    printf("9. Conversão de Dados\n");
+    printf("10. Sair\n");
     printf("=================================================\n");
 }</code></pre>
-<p>A função <code>mostrar_menu_principal</code> exibe o menu principal onde o usuário pode escolher entre realizar uma conversão de tempo ou sair do programa.</p>
+<p>A função <code>mostrar_menu_principal</code> exibe o menu principal onde o usuário pode escolher entre realizar uma conversão de unidades diversos ou sair do programa.</p>
 
-<h3>5. Função <code>main</code></h3>
-<p>A função <code>main</code> é responsável por orquestrar o fluxo do programa. Ela exibe os menus e permite que o usuário faça escolhas.</p>
+<h3>6. Função <code>main</code></h3>
+<p>A função <code>main</code> é responsável por orquestrar o fluxo do programa. Ela exibe na interface do terminal os menus e permite que o usuário faça escolhas.</p>
 <ul>
-    <li><strong>Declaração de Variáveis</strong>:<br>
-        <code>opcao_principal</code>: Armazena a escolha do usuário no menu principal (1 para conversão de tempo, 2 para sair).<br>
-        <code>unidade_tempo</code>: Armazena a escolha do usuário sobre qual unidade de tempo deseja converter.<br>
-        <code>valor</code>: Armazena o valor de tempo que o usuário deseja converter.
+    <li><strong>Testes Automáticos</strong>:<br>
+        Os testes garantem que as funções de conversão estão corretas antes de interagir com o usuário.
     </li>
-    <li><strong>Exibição dos Menus</strong>: O programa exibe o menu principal e o menu de conversão de tempo com a função <code>mostrar_menu_principal</code> e <code>mostrar_menu</code>, respectivamente.</li>
+    <li><strong>Declaração de Variáveis</strong>:<br>
+        <code>opcao_principal</code>: Armazena a escolha do usuário no menu principal (variando de 1 a 10).<br>
+        </li>
+    <li><strong>Exibição do Menu Principal</strong>: O programa exibe o menu principal e o menu de conversão escolhido pelo usuário com a função <code>mostrar_menu_principal</code> e <code>mostrar_menu_{conversão}</code>, respectivamente.</li>
     <li><strong>Leitura da Entrada do Usuário</strong>: O programa lê as opções de menu e o valor a ser convertido, verificando se a entrada é válida.</li>
-    <li><strong>Realização das Conversões</strong>: Dependendo da escolha do usuário no menu de conversão, o programa realiza a conversão do valor inserido e exibe os resultados:<br>
-        Se a unidade escolhida for "Segundos", o programa converte para minutos e horas.<br>
-        Se a unidade escolhida for "Minutos", o programa converte para segundos e horas.<br>
-        Se a unidade escolhida for "Horas", o programa converte para segundos e minutos.
+    <li><strong>Realização das Conversões</strong>: Dependendo da escolha do usuário no menu de conversão, o programa realiza a conversão do valor inserido e exibe os resultados.
     </li>
 </ul>
 
-<h3>6. Resultado das Conversões</h3>
+<h3>7. Resultado das Conversões</h3>
 <ul>
-    <li><strong>Segundos para Minutos</strong>: Calculado dividindo os segundos por 60.</li>
-    <li><strong>Segundos para Horas</strong>: Calculado dividindo os segundos por 3600.</li>
-    <li><strong>Minutos para Segundos</strong>: Calculado multiplicando os minutos por 60.</li>
-    <li><strong>Minutos para Horas</strong>: Calculado dividindo os minutos por 60.</li>
-    <li><strong>Horas para Segundos</strong>: Calculado multiplicando as horas por 3600.</li>
-    <li><strong>Horas para Minutos</strong>: Calculado multiplicando as horas por 60.</li>
+    <p>Ao escolher uma conversão a ser feita no menu principal, o usuário é direcionado ao menu secundário para escolha da unidade de medida a ser convertida. Com isso, os resultados serão impressos no terminal, assim como o menu principal para a próxima conversão. </p>
 </ul>
 
 <h2>Compilação e Execução do Programa</h2>

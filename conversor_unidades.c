@@ -27,6 +27,31 @@ float kelvinFahrenheit(float kelvin) {
     return (kelvin - 273.15) * 9.0 / 5.0 + 32; 
 }
 
+// Funções de conversão de potencia
+float watts_para_kilowatts (float watts) {
+    return watts/1000.0;
+}
+
+float watts_para_cavalo_vapor (float watts) {
+    return watts/735.50;
+}
+
+float kilowatts_para_watts (float kilowatts) {
+    return kilowatts*1000.0;
+}
+
+float kilowatts_para_cavalo_vapor (float kilowatts) {
+    return kilowatts*1000.0/735.50;
+}
+
+float cavalo_vapor_para_watts (float cv) {
+    return cv*735.50;
+}
+
+float cavalo_vapor_para_kilowatts (float cv) {
+    return cv*735.50/1000.0;
+}
+
 // Funções de conversão de tempo
 float segundos_para_minutos(float segundos) {
     return segundos / 60;
@@ -65,6 +90,29 @@ void testar_conversao_temperatura() {
     printf("Testes de conversão de temperatura passaram com sucesso!\n");
 }
 
+// Função para testar as conversões de potencia
+void testar_conversao_potencia() {
+    // Testando watts para kilowatts
+    assert(fabs(watts_para_kilowatts(1000.0) - 1.0) < 0.0001);
+
+    // Testando watts para cavalo-vapor
+    assert(fabs(watts_para_cavalo_vapor(735.50) - 1.0) < 0.0001);
+
+    // Testando kilowatts para watts
+    assert(fabs(kilowatts_para_watts(1.0) - 1000.0) < 0.0001);
+
+    // Testando kilowatts para cavalo-vapor
+    assert(fabs(kilowatts_para_cavalo_vapor(1.0) - 1.35962) < 0.0001);
+
+    // Testando cavalo-vapor para watts
+    assert(fabs(cavalo_vapor_para_watts(1.0) - 735.50) < 0.0001);
+
+    // Testando cavalo-vapor para kilowatts
+    assert(fabs(cavalo_vapor_para_kilowatts(1.0) - 0.7355) < 0.0001);
+
+    printf("Testes de conversão de potência passaram com sucesso!\n");
+}
+
 // Função para testar as conversões de tempo
 void testar_conversao() {
     // Testando as conversões
@@ -78,12 +126,20 @@ void testar_conversao() {
     printf("Testes de conversão de tempo passaram com sucesso!\n");
 }
 
-// Função para mostrar o menu de escolha de unidade de tempo
+// Função para mostrar o menu de escolha de unidade de temperatura
 void mostrar_menu_temperatura() {
     printf("Escolha a unidade de temperatura que deseja converter:\n");
     printf("1. Celsius\n");
     printf("2. Fahrenheit\n");
     printf("3. Kelvin\n");
+}
+
+// Função para mostrar o menu de escolha de unidade de potência
+void mostrar_menu_potencia() {
+    printf("Escolha a unidade de potência que deseja converter:\n");
+    printf("1. Watts (W)\n");
+    printf("2. Quilowatts (kW)\n");
+    printf("3. Cavalo-vapor (CV)\n");
 }
 
 // Função para mostrar o menu de escolha de unidade de tempo
@@ -130,6 +186,25 @@ void testar_menu_unidade_tempo(int opcao_unidade, float valor) {
     }
 }
 
+// Função que simula a conversão de unidades de potência
+void testar_menu_unidade_potencia(int opcao_unidade, float valor) {
+    if (opcao_unidade == 1) { // Conversão de Watts
+        printf("Conversão de %.2f Watts:\n", valor);
+        printf("%.2f Watts equivalem a %.2f Quilowatts.\n", valor, watts_para_kilowatts(valor));
+        printf("%.2f Watts equivalem a %.2f Cavalos-vapor.\n", valor, watts_para_cavalo_vapor(valor));
+    } else if (opcao_unidade == 2) { // Conversão de Quilowatts
+        printf("Conversão de %.2f Quilowatts:\n", valor);
+        printf("%.2f Quilowatts equivalem a %.2f Watts.\n", valor, kilowatts_para_watts(valor));
+        printf("%.2f Quilowatts equivalem a %.2f Cavalos-vapor.\n", valor, kilowatts_para_cavalo_vapor(valor));
+    } else if (opcao_unidade == 3) { // Conversão de Cavalos-vapor
+        printf("Conversão de %.2f Cavalos-vapor:\n", valor);
+        printf("%.2f Cavalos-vapor equivalem a %.2f Watts.\n", valor, cavalo_vapor_para_watts(valor));
+        printf("%.2f Cavalos-vapor equivalem a %.2f Quilowatts.\n", valor, cavalo_vapor_para_kilowatts(valor));
+    } else {
+        printf("Opção de unidade inválida!\n");
+    }
+}
+
 // Função para testar a conversão de temperatura
 void testar_menu_unidade_temperatura(int opcao_unidade, float valor) {
     if (opcao_unidade == 1) {
@@ -155,7 +230,8 @@ int main() {
     
     // Testes das funções de conversão
     testar_conversao_temperatura();
-        
+    testar_conversao_potencia();
+    testar_conversao();
 
     // Interação com o usuário
     int opcao_principal;
@@ -196,6 +272,36 @@ int main() {
 
                 // Realizando as conversões dependendo da unidade escolhida
                 testar_menu_unidade_temperatura(unidade_temperatura, valor);
+                break;
+            }
+
+            case 6: { // Conversão de potencia
+                int unidade_potencia;
+                float valor;
+
+                // Exibe o menu de escolha da unidade
+                mostrar_menu_potencia();
+                printf("Digite sua opção (1/2/3): ");
+                if (scanf("%d", &unidade_potencia) != 1) {
+                    printf("Erro na entrada! Tente novamente.\n");
+                    return 1; // Encerra o programa em caso de erro na entrada
+                }
+
+                // Verifica se a escolha é válida
+                if (unidade_potencia < 1 || unidade_potencia > 3) {
+                    printf("Opção inválida! Tente novamente.\n");
+                    continue; // Volta para o início do menu principal
+                }
+
+                // Solicita o valor a ser convertido
+                printf("Digite o valor a ser convertido: ");
+                if (scanf("%f", &valor) != 1) {
+                    printf("Erro na entrada! Tente novamente.\n");
+                    return 1; // Encerra o programa em caso de erro na entrada
+                }
+
+                // Realizando as conversões dependendo da unidade escolhida
+                testar_menu_unidade_potencia(unidade_potencia, valor);
                 break;
             }
 
