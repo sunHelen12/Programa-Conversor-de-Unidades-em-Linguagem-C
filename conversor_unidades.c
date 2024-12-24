@@ -186,6 +186,25 @@ void testar_menu_unidade_tempo(int opcao_unidade, float valor) {
     }
 }
 
+// Função que simula a conversão de unidades de potência
+void testar_menu_unidade_potencia(int opcao_unidade, float valor) {
+    if (opcao_unidade == 1) { // Conversão de Watts
+        printf("Conversão de %.2f Watts:\n", valor);
+        printf("%.2f Watts equivalem a %.2f Quilowatts.\n", valor, watts_para_quilowatts(valor));
+        printf("%.2f Watts equivalem a %.2f Cavalos-vapor.\n", valor, watts_para_cavalos(valor));
+    } else if (opcao_unidade == 2) { // Conversão de Quilowatts
+        printf("Conversão de %.2f Quilowatts:\n", valor);
+        printf("%.2f Quilowatts equivalem a %.2f Watts.\n", valor, quilowatts_para_watts(valor));
+        printf("%.2f Quilowatts equivalem a %.2f Cavalos-vapor.\n", valor, quilowatts_para_cavalos(valor));
+    } else if (opcao_unidade == 3) { // Conversão de Cavalos-vapor
+        printf("Conversão de %.2f Cavalos-vapor:\n", valor);
+        printf("%.2f Cavalos-vapor equivalem a %.2f Watts.\n", valor, cavalos_para_watts(valor));
+        printf("%.2f Cavalos-vapor equivalem a %.2f Quilowatts.\n", valor, cavalos_para_quilowatts(valor));
+    } else {
+        printf("Opção de unidade inválida!\n");
+    }
+}
+
 // Função para testar a conversão de temperatura
 void testar_menu_unidade_temperatura(int opcao_unidade, float valor) {
     if (opcao_unidade == 1) {
