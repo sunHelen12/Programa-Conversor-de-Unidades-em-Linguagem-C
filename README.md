@@ -68,17 +68,6 @@
 
 <h3>2. Funções de Conversão</h3>
 
-<h4>2.4. Funções de Conversão de Temperatura</h4>
-<p>As funções abaixo são responsáveis por realizar as conversões entre diferentes unidades de temperatura:</p>
-<ul>
-    <li><strong>celsius_para_fahrenheit</strong>: Converte Celsius para Fahrenheit, utilizando a fórmula \( F = (C \times 9/5) + 32 \).</li>
-    <li><strong>celsius_para_kelvin</strong>: Converte Celsius para Kelvin, somando 273.15 ao valor de Celsius.</li>
-    <li><strong>fahrenheit_para_celsius</strong>: Converte Fahrenheit para Celsius, utilizando a fórmula \( C = (F - 32) \times 5/9 \).</li>
-    <li><strong>fahrenheit_para_kelvin</strong>: Converte Fahrenheit para Kelvin, utilizando a fórmula \( K = (F - 32) \times 5/9 + 273.15 \).</li>
-    <li><strong>kelvin_para_celsius</strong>: Converte Kelvin para Celsius, subtraindo 273.15 do valor de Kelvin.</li>
-    <li><strong>kelvin_para_fahrenheit</strong>: Converte Kelvin para Fahrenheit, utilizando a fórmula \( F = (K - 273.15) \times 9/5 + 32 \).</li>
-</ul>
-
 <h4>2.6. Funções de Conversão de Potência</h4>
 <p>As funções abaixo são responsáveis por realizar as conversões entre diferentes unidades de potência:</p>
 <ul>
@@ -90,7 +79,13 @@
     <li><strong>cavalo_vapor_para_kilowatts</strong>: Converte cavalo-vapor para quilowatts, multiplicando o valor de cavalo-vapor por 735,50 e dividindo por 1000,0.</li>
 </ul>
 
-
+<h4>2.7 Funções de Conversão de Área</h4>
+<p>As funções abaixo são responsáveis por realizar as conversões entre diferentes unidades de área:</p>
+<ul>
+    <li><strong>metrosParaCentimetros</strong>: Converte metros para centímetros, multiplicando o valor de metros por 10000.</li>
+    <li><strong>centimetrosParaMetros</strong>: Converte centímetros para metros, dividindo o valor de centímetros por 10000.</li>
+</ul>
+    
 <h4>2.8. Funções de Conversão de Tempo</h4>
 <p>As funções abaixo são responsáveis por realizar as conversões entre diferentes unidades de tempo:</p>
 <ul>
@@ -108,15 +103,6 @@
 
 <h3>4. Funções para Mostrar Menu de Opções</h3>
 
-<h4>4.4. Função <code>mostrar_menu_temperatura</code></h4>
-<pre><code>void mostrar_menu_temperatura() {
-    printf("Escolha a unidade de temperatura que deseja converter:\n");
-    printf("1. Celsius\n");
-    printf("2. Fahrenheit\n");
-    printf("3. Kelvin\n");
-}</code></pre>
-<p>Esta função exibe um menu com as opções de unidades de temperatura para o usuário escolher. O menu apresenta três opções: Celsius, Fahrenheit e Kelvin.</p>
-
 <h4>4.6. Função <code>mostrar_menu_potencia</code></h4>
 <pre><code>void mostrar_menu_potencia() {
     printf("Escolha a unidade de potencia que deseja converter:\n");
@@ -125,6 +111,14 @@
     printf("3. Cavalo-vapor (CV)\n");
 }</code></pre>
 <p>Esta função exibe um menu com as opções de unidades de potencia para o usuário escolher. O menu apresenta três opções: Watts, Quilowatts e Cavalo-vapor.</p>
+
+<h4>4.7. Função <code>mostrar_menu_area</code></h4>
+<pre><code>void mostrar_menu_area(){
+    printf("Escolha a unidade de área que deseja converter:\n");
+    printf("1. Metros quadrados\n");
+    printf("2. Centímetros quadrados\n");
+}</code></pre>
+<p>Esta função exibe um menu com duas opções de unidades de área para o usuário escolher: Metros quadrados e Centímetros quadrados.</p>
 
 <h4>4.8. Função <code>mostrar_menu_tempo</code></h4>
 <pre><code>void mostrar_menu_tempo() {
