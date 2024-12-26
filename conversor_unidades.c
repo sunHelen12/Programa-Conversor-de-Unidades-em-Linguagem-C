@@ -28,28 +28,28 @@ float kelvinFahrenheit(float kelvin) {
 }
 
 // Funções de conversão de potencia
-float watts_para_kilowatts (float watts) {
-    return watts/1000.0;
+float watts_para_kilowatts(float watts) {
+    return watts / 1000.0;
 }
 
-float watts_para_cavalo_vapor (float watts) {
-    return watts/735.50;
+float watts_para_cavalo_vapor(float watts) {
+    return watts / 735.50;
 }
 
-float kilowatts_para_watts (float kilowatts) {
-    return kilowatts*1000.0;
+float kilowatts_para_watts(float kilowatts) {
+    return kilowatts * 1000.0;
 }
 
-float kilowatts_para_cavalo_vapor (float kilowatts) {
-    return kilowatts*1000.0/735.50;
+float kilowatts_para_cavalo_vapor(float kilowatts) {
+    return kilowatts * 1000.0 / 735.50;
 }
 
-float cavalo_vapor_para_watts (float cv) {
-    return cv*735.50;
+float cavalo_vapor_para_watts(float cv) {
+    return cv * 735.50;
 }
 
-float cavalo_vapor_para_kilowatts (float cv) {
-    return cv*735.50/1000.0;
+float cavalo_vapor_para_kilowatts(float cv) {
+    return cv * 735.50 / 1000.0;
 }
 
 // Funções de conversão de tempo
@@ -77,7 +77,6 @@ float horas_para_minutos(float horas) {
     return horas * 60;
 }
 
-//Funcões de conversão de velocidade
 float kmParaMs(float valor) {
     return valor * 0.277778;
 }
@@ -123,7 +122,7 @@ void testar_conversao_temperatura() {
     printf("Testes de conversão de temperatura passaram com sucesso!\n");
 }
 
-// Função para testar as conversões de potencia
+// Função para testar as conversões de potência
 void testar_conversao_potencia() {
     // Testando watts para kilowatts
     assert(fabs(watts_para_kilowatts(1000.0) - 1.0) < 0.0001);
@@ -146,7 +145,7 @@ void testar_conversao_potencia() {
     printf("Testes de conversão de potência passaram com sucesso!\n");
 }
 
-//Função para testar as convers~pes de velocidade
+// Função para testar as conversões de velocidade
 void testar_conversao_velocidade() {
     const float tolerancia = 0.001; // Ajuste na tolerância
 
@@ -216,6 +215,7 @@ void mostrar_menu_tempo() {
     printf("3. Horas\n");
 }
 
+// Função para mostrar o menu de escolha de unidade de área
 void mostrar_menu_area() {
     printf("Escolha a unidade de área que deseja converter:\n");
     printf("1. Metros quadrados\n");
@@ -330,6 +330,7 @@ void testar_menu_unidade_velocidade(int opcao_origem, int opcao_destino, float v
     }
 }
 
+// Função para testar a conversão de área
 void testar_menu_unidade_area(int opcao_unidade, float valor) {
     if (opcao_unidade == 1) {
         printf("Conversão de %.2f metros quadrados:\n", valor);
@@ -339,6 +340,72 @@ void testar_menu_unidade_area(int opcao_unidade, float valor) {
         printf("%.2f centímetros quadrados equivalem a %.2f metros quadrados.\n", valor, centimetrosParaMetros(valor));
     } else {
         printf("Opção de unidade inválida!\n");
+    }
+}    
+
+// Função para converter Litros
+void Converter_Litros() {
+    double litro, metro_c, ml_c;
+    int converter;
+
+    printf("Digite o valor em Litros: \n");
+    scanf("%lf", &litro);
+
+    printf("Deseja converter Para: \n\n 1 - Metro Cubico \n 2 - Mililitro \n");
+    scanf("%d", &converter);
+
+    if (converter == 1) {
+        metro_c = litro / 1000;
+        printf("%.2lf Litros = %.6lf Metros Cubicos\n", litro, metro_c);
+    } else if (converter == 2) {
+        ml_c = litro * 1000;
+        printf("%.2lf Litros = %.2lf Mililitros\n", litro, ml_c);
+    } else {
+        printf("Opcao invalida!\n");
+    }
+}
+
+// Função para converter Metros Cúbicos
+void Converter_Metros_Cubicos() {
+    double metro_cubico, litro_c, ml_c;
+    int converter;
+
+    printf("Digite o valor em Metros Cubicos: \n");
+    scanf("%lf", &metro_cubico);
+
+    printf("Deseja converter Para: \n\n 1 - Litro \n 2 - Mililitro \n\n");
+    scanf("%d", &converter);
+
+    if (converter == 1) {
+        litro_c = metro_cubico * 1000;
+        printf("%.2lf Metros Cubicos = %.2lf Litros\n", metro_cubico, litro_c);
+    } else if (converter == 2) {
+        ml_c = metro_cubico * 1000000;
+        printf("%.2lf Metros Cubicos = %.2lf Mililitros\n", metro_cubico, ml_c);
+    } else {
+        printf("Opcao invalida!\n");
+    }
+}
+
+// Função para converter Mililitros
+void Converter_Mililitros() {
+    double mililitro, litro_c, metro_c;
+    int converter;
+
+    printf("Digite o valor em Mililitros: \n");
+    scanf("%lf", &mililitro);
+
+    printf("Deseja converter Para: \n\n 1 - Metro Cubico \n 2 - Litro \n");
+    scanf("%d", &converter);
+
+    if (converter == 1) {
+        metro_c = mililitro / 1000000;
+        printf("%.2lf Mililitros = %.6lf Metros Cubicos\n", mililitro, metro_c);
+    } else if (converter == 2) {
+        litro_c = mililitro / 1000;
+        printf("%.2lf Mililitros = %.2lf Litros\n", mililitro, litro_c);
+    } else {
+        printf("Opcao invalida!\n");
     }
 }
 
@@ -364,7 +431,28 @@ int main() {
             return 1; // Encerra o programa em caso de erro na entrada
         }
 
-        switch (opcao_principal) {
+        switch (opcao_principal) {        
+            case 3: { // Conversão unidades de Volume
+                int escolha;
+
+                // Exibe o menu de escolha da unidade
+                printf("Qual unidade voce deseja converter:\n\n 1 - Litro \n 2 - Metro Cubico \n 3 - Mililitro \n");
+                scanf("%d", &escolha);
+
+                // Verifica qual foi a escolha
+                if (escolha == 1) {
+                    Converter_Litros();
+                } else if (escolha == 2) {
+                    Converter_Metros_Cubicos();
+                } else if (escolha == 3) {
+                    Converter_Mililitros();
+                } else {
+                    printf("Opcao invalida!\n");
+                }
+
+                break; // Adicionado para evitar o fall-through
+            }
+
             case 4: { // Conversão de temperatura
                 int unidade_temperatura;
                 float valor;
@@ -395,7 +483,7 @@ int main() {
                 break;
             }
 
-            case 5:{
+            case 5: { // Conversão de velocidade
                 float valor;
                 char unidadeOrigem, unidadeDestino;
             
@@ -433,7 +521,7 @@ int main() {
                 break;
             }
 
-            case 6: { // Conversão de potencia
+            case 6: { // Conversão de potência
                 int unidade_potencia;
                 float valor;
 
@@ -463,7 +551,7 @@ int main() {
                 break;
             }
 
-            case 7: {
+            case 7: { // Conversão de área
                 int unidade_area;
                 float valor;
 
