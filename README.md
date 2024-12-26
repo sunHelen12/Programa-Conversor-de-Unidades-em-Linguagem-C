@@ -79,6 +79,17 @@
     <li><strong>kelvin_para_fahrenheit</strong>: Converte Kelvin para Fahrenheit, utilizando a fórmula \( F = (K - 273.15) \times 9/5 + 32 \).</li>
 </ul>
 
+<h4>2.5. Funções de Conversão de Velocidade</h4>
+<p>As funções abaixo são responsáveis por realizar as conversões entre diferentes unidades de velocidade:</p>
+<ul>
+    <li><strong>kmParaMs</strong>: Converte km/h para m/s, multiplicando o valor por 0.277778.</li>
+    <li><strong>kmParaMph</strong>: Converte km/h para mph, multiplicando o valor por 0.62137.</li>
+    <li><strong>msParaKm</strong>: Converte m/s para km/h, multiplicando o valor por 3.6.</li>
+    <li><strong>msParaMph</strong>: Converte m/s para mph, multiplicando o valor por 2.23694.</li>
+    <li><strong>mphParaKm</strong>: Converte mph para km/h, multiplicando o valor por 1.60934.</li>
+    <li><strong>mphParaMs</strong>: Converte mph para m/s, multiplicando o valor por 0.44704.</li>
+</ul>
+
 <h4>2.6. Funções de Conversão de Potência</h4>
 <p>As funções abaixo são responsáveis por realizar as conversões entre diferentes unidades de potência:</p>
 <ul>
