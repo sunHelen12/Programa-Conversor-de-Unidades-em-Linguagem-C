@@ -523,7 +523,7 @@ int main() {
                 break;
             }
 
-                        case 9: { // Conversão de Dados
+            case 9: { // Conversão de Dados
                 const double fatorConversao = 8.0; // 8 bits corresponde a 1 byte
                 int unidadeOrigem, unidadeDestino;
                 double valor, resultado;
