@@ -77,7 +77,6 @@ float horas_para_minutos(float horas) {
     return horas * 60;
 }
 
-// Funções de conversão de velocidade
 float kmParaMs(float valor) {
     return valor * 0.277778;
 }
@@ -102,6 +101,14 @@ float mphParaMs(float valor) {
     return valor * 0.44704;
 }
 
+float metrosParaCentimetros(float metros) {
+    return metros * 10000; // 1 m² = 10,000 cm²
+}
+
+float centimetrosParaMetros(float centimetros) {
+    return centimetros / 10000;
+}
+
 // Função para testar as conversões de temperatura
 void testar_conversao_temperatura() {
     // Testando as conversões de temperatura
@@ -115,7 +122,7 @@ void testar_conversao_temperatura() {
     printf("Testes de conversão de temperatura passaram com sucesso!\n");
 }
 
-// Função para testar as conversões de potencia
+// Função para testar as conversões de potência
 void testar_conversao_potencia() {
     // Testando watts para kilowatts
     assert(fabs(watts_para_kilowatts(1000.0) - 1.0) < 0.0001);
@@ -176,6 +183,14 @@ void testar_conversao() {
     printf("Testes de conversão de tempo passaram com sucesso!\n");
 }
 
+void testar_conversao_area() {
+    // Testando as conversões de área
+    assert(fabs(metrosParaCentimetros(1.0) - 10000.0) < 0.0001); // Comparação com tolerância
+    assert(fabs(centimetrosParaMetros(10000.0) - 1.0) < 0.0001); // Comparação com tolerância
+
+    printf("Testes de conversão de área passaram com sucesso!\n");
+}
+
 // Função para mostrar o menu de escolha de unidade de temperatura
 void mostrar_menu_temperatura() {
     printf("Escolha a unidade de temperatura que deseja converter:\n");
@@ -198,6 +213,13 @@ void mostrar_menu_tempo() {
     printf("1. Segundos\n");
     printf("2. Minutos\n");
     printf("3. Horas\n");
+}
+
+// Função para mostrar o menu de escolha de unidade de área
+void mostrar_menu_area() {
+    printf("Escolha a unidade de área que deseja converter:\n");
+    printf("1. Metros quadrados\n");
+    printf("2. Centímetros quadrados\n");
 }
 
 // Função para mostrar o menu principal
@@ -308,6 +330,19 @@ void testar_menu_unidade_velocidade(int opcao_origem, int opcao_destino, float v
     }
 }
 
+// Função para testar a conversão de área
+void testar_menu_unidade_area(int opcao_unidade, float valor) {
+    if (opcao_unidade == 1) {
+        printf("Conversão de %.2f metros quadrados:\n", valor);
+        printf("%.2f metros quadrados equivalem a %.2f centímetros quadrados.\n", valor, metrosParaCentimetros(valor));
+    } else if (opcao_unidade == 2) {
+        printf("Conversão de %.2f centímetros quadrados:\n", valor);
+        printf("%.2f centímetros quadrados equivalem a %.2f metros quadrados.\n", valor, centimetrosParaMetros(valor));
+    } else {
+        printf("Opção de unidade inválida!\n");
+    }
+}    
+
 // Função para converter Litros
 void Converter_Litros() {
     double litro, metro_c, ml_c;
@@ -383,6 +418,7 @@ int main() {
     testar_conversao_potencia();
     testar_conversao_velocidade();
     testar_conversao();
+    testar_conversao_area();
 
     // Interação com o usuário
     int opcao_principal;
@@ -395,8 +431,7 @@ int main() {
             return 1; // Encerra o programa em caso de erro na entrada
         }
 
-        switch (opcao_principal) {
-
+        switch (opcao_principal) {        
             case 3: { // Conversão unidades de Volume
                 int escolha;
 
@@ -448,7 +483,7 @@ int main() {
                 break;
             }
 
-            case 5: {
+            case 5: { // Conversão de velocidade
                 float valor;
                 char unidadeOrigem, unidadeDestino;
             
@@ -486,7 +521,7 @@ int main() {
                 break;
             }
 
-            case 6: { // Conversão de potencia
+            case 6: { // Conversão de potência
                 int unidade_potencia;
                 float valor;
 
@@ -513,6 +548,36 @@ int main() {
 
                 // Realizando as conversões dependendo da unidade escolhida
                 testar_menu_unidade_potencia(unidade_potencia, valor);
+                break;
+            }
+
+            case 7: { // Conversão de área
+                int unidade_area;
+                float valor;
+
+                // Exibe o menu de escolha da unidade
+                mostrar_menu_area();
+                printf("Digite sua opção (1/2): ");
+                if (scanf("%d", &unidade_area) != 1) {
+                    printf("Erro na entrada! Tente novamente.\n");
+                    return 1; // Encerra o programa em caso de erro na entrada
+                }
+
+                // Verifica se a escolha é válida
+                if (unidade_area < 1 || unidade_area > 2) {
+                    printf("Opção inválida! Tente novamente.\n");
+                    continue; // Volta para o início do menu principal
+                }
+
+                // Solicita o valor a ser convertido
+                printf("Digite o valor a ser convertido: ");
+                if (scanf("%f", &valor) != 1) {
+                    printf("Erro na entrada! Tente novamente.\n");
+                    return 1; // Encerra o programa em caso de erro na entrada
+                }
+
+                // Realizando as conversões dependendo da unidade escolhida
+                testar_menu_unidade_area(unidade_area, valor);
                 break;
             }
 
