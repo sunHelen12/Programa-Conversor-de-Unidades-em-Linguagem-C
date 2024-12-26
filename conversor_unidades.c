@@ -28,28 +28,28 @@ float kelvinFahrenheit(float kelvin) {
 }
 
 // Funções de conversão de potencia
-float watts_para_kilowatts (float watts) {
-    return watts/1000.0;
+float watts_para_kilowatts(float watts) {
+    return watts / 1000.0;
 }
 
-float watts_para_cavalo_vapor (float watts) {
-    return watts/735.50;
+float watts_para_cavalo_vapor(float watts) {
+    return watts / 735.50;
 }
 
-float kilowatts_para_watts (float kilowatts) {
-    return kilowatts*1000.0;
+float kilowatts_para_watts(float kilowatts) {
+    return kilowatts * 1000.0;
 }
 
-float kilowatts_para_cavalo_vapor (float kilowatts) {
-    return kilowatts*1000.0/735.50;
+float kilowatts_para_cavalo_vapor(float kilowatts) {
+    return kilowatts * 1000.0 / 735.50;
 }
 
-float cavalo_vapor_para_watts (float cv) {
-    return cv*735.50;
+float cavalo_vapor_para_watts(float cv) {
+    return cv * 735.50;
 }
 
-float cavalo_vapor_para_kilowatts (float cv) {
-    return cv*735.50/1000.0;
+float cavalo_vapor_para_kilowatts(float cv) {
+    return cv * 735.50 / 1000.0;
 }
 
 // Funções de conversão de tempo
@@ -77,7 +77,7 @@ float horas_para_minutos(float horas) {
     return horas * 60;
 }
 
-//Funcões de conversão de velocidade
+// Funções de conversão de velocidade
 float kmParaMs(float valor) {
     return valor * 0.277778;
 }
@@ -146,7 +146,7 @@ void testar_conversao_potencia() {
     printf("Testes de conversão de potência passaram com sucesso!\n");
 }
 
-//Função para testar as convers~pes de velocidade
+// Função para testar as conversões de velocidade
 void testar_conversao_velocidade() {
     const float tolerancia = 0.001; // Ajuste na tolerância
 
@@ -186,8 +186,8 @@ void testar_conversao() {
 
 void testar_conversao_area() {
     // Testando as conversões de área
-    assert(fabs(metrosParaCentimetros(1.0) - 10000.0) < 0.0001); // Comparação com tolerância
-    assert(fabs(centimetrosParaMetros(10000.0) - 1.0) < 0.0001); // Comparação com tolerância
+    assert(fabs(metrosParaCentimetros(1.0) - 10000.0) < 0.0001); // 1 m² = 10,000 cm²
+    assert(fabs(centimetrosParaMetros(10000.0) - 1.0) < 0.0001); // 1 m² = 10,000 cm²
 
     printf("Testes de conversão de área passaram com sucesso!\n");
 }
@@ -342,10 +342,76 @@ void testar_menu_unidade_area(int opcao_unidade, float valor) {
     }
 }
 
+// Função para converter Litros
+void Converter_Litros() {
+    double litro, metro_c, ml_c;
+    int converter;
+
+    printf("Digite o valor em Litros: \n");
+    scanf("%lf", &litro);
+
+    printf("Deseja converter Para: \n\n 1 - Metro Cubico \n 2 - Mililitro \n");
+    scanf("%d", &converter);
+
+    if (converter == 1) {
+        metro_c = litro / 1000;
+        printf("%.2lf Litros = %.6lf Metros Cubicos\n", litro, metro_c);
+    } else if (converter == 2) {
+        ml_c = litro * 1000;
+        printf("%.2lf Litros = %.2lf Mililitros\n", litro, ml_c);
+    } else {
+        printf("Opcao invalida!\n");
+    }
+}
+
+// Função para converter Metros Cúbicos
+void Converter_Metros_Cubicos() {
+    double metro_cubico, litro_c, ml_c;
+    int converter;
+
+    printf("Digite o valor em Metros Cubicos: \n");
+    scanf("%lf", &metro_cubico);
+
+    printf("Deseja converter Para: \n\n 1 - Litro \n 2 - Mililitro \n\n");
+    scanf("%d", &converter);
+
+    if (converter == 1) {
+        litro_c = metro_cubico * 1000;
+        printf("%.2lf Metros Cubicos = %.2lf Litros\n", metro_cubico, litro_c);
+    } else if (converter == 2) {
+        ml_c = metro_cubico * 1000000;
+        printf("%.2lf Metros Cubicos = %.2lf Mililitros\n", metro_cubico, ml_c);
+    } else {
+        printf("Opcao invalida!\n");
+    }
+}
+
+// Função para converter Mililitros
+void Converter_Mililitros() {
+    double mililitro, litro_c, metro_c;
+    int converter;
+
+    printf("Digite o valor em Mililitros: \n");
+    scanf("%lf", &mililitro);
+
+    printf("Deseja converter Para: \n\n 1 - Metro Cubico \n 2 - Litro \n");
+    scanf("%d", &converter);
+
+    if (converter == 1) {
+        metro_c = mililitro / 1000000;
+        printf("%.2lf Mililitros = %.6lf Metros Cubicos\n", mililitro, metro_c);
+    } else if (converter == 2) {
+        litro_c = mililitro / 1000;
+        printf("%.2lf Mililitros = %.2lf Litros\n", mililitro, litro_c);
+    } else {
+        printf("Opcao invalida!\n");
+    }
+}
+
 int main() {
     // Simulando os testes do código
     printf("Iniciando testes...\n");
-
+    
     // Testes das funções de conversão
     testar_conversao_temperatura();
     testar_conversao_potencia();
@@ -365,6 +431,28 @@ int main() {
         }
 
         switch (opcao_principal) {
+
+            case 3: { // Conversão unidades de Volume
+                int escolha;
+
+                // Exibe o menu de escolha da unidade
+                printf("Qual unidade voce deseja converter:\n\n 1 - Litro \n 2 - Metro Cubico \n 3 - Mililitro \n");
+                scanf("%d", &escolha);
+
+                // Verifica qual foi a escolha
+                if (escolha == 1) {
+                    Converter_Litros();
+                } else if (escolha == 2) {
+                    Converter_Metros_Cubicos();
+                } else if (escolha == 3) {
+                    Converter_Mililitros();
+                } else {
+                    printf("Opcao invalida!\n");
+                }
+
+                break; // Adicionado para evitar o fall-through
+            }
+
             case 4: { // Conversão de temperatura
                 int unidade_temperatura;
                 float valor;
@@ -395,22 +483,22 @@ int main() {
                 break;
             }
 
-            case 5:{
+            case 5: {
                 float valor;
                 char unidadeOrigem, unidadeDestino;
-
+            
                 // Pergunta ao usuário qual unidade de origem ele quer converter
                 printf("Digite a unidade de origem (k = km/h, m = m/s, p = mph): ");
                 scanf(" %c", &unidadeOrigem);
-
+            
                 // Pergunta ao usuário qual unidade de destino ele quer
                 printf("Digite a unidade de destino (k = km/h, m = m/s, p = mph): ");
                 scanf(" %c", &unidadeDestino);
-
+            
                 // Pergunta o valor da velocidade
                 printf("Digite o valor da velocidade: ");
                 scanf("%f", &valor);
-
+            
                 // Lógica para chamar as funções específicas diretamente
                 if (unidadeOrigem == 'k' && unidadeDestino == 'm') {
                     printf("%.2f km/h = %.2f m/s\n", valor, kmParaMs(valor));
@@ -520,6 +608,49 @@ int main() {
 
                 // Realizando as conversões dependendo da unidade escolhida
                 testar_menu_unidade_tempo(unidade_tempo, valor);
+                break;
+            }
+
+            case 9: { // Conversão de Dados
+                const double fatorConversao = 8.0; // 8 bits corresponde a 1 byte
+                int unidadeOrigem, unidadeDestino;
+                double valor, resultado;
+
+                printf("Conversor de unidades:\n");
+                printf("0. Bits\n");
+                printf("1. Bytes\n");
+                printf("2. Kilobytes (KB)\n");
+                printf("3. Megabytes (MB)\n");
+                printf("4. Gigabytes (GB)\n");
+                printf("5. Terabytes (TB)\n");
+
+                printf("Escolha o tipo de unidade que voce deseja converter (0-5): ");
+                scanf("%d", &unidadeOrigem);
+
+                printf("Escolha em qual tipo de unidade que voce deseja converter (0-5): ");
+                scanf("%d", &unidadeDestino);
+
+                printf("Digite o valor a ser convertido: ");
+                scanf("%lf", &valor);
+
+                if (unidadeOrigem >= 0 && unidadeOrigem <= 5 && unidadeDestino >= 0 && unidadeDestino <= 5) {
+                    resultado = valor;
+
+                    if (unidadeOrigem < unidadeDestino) {
+                        for (int i = unidadeOrigem; i < unidadeDestino; i++) {
+                            resultado /= (i == 0 ? fatorConversao : 1024);
+                        }
+                    } else if (unidadeOrigem > unidadeDestino) {
+                        for (int i = unidadeOrigem; i > unidadeDestino; i--) {
+                            resultado *= (i - 1 == 0 ? fatorConversao : 1024);
+                        }
+                    }
+
+                    printf("O resultado da conversao eh: %.2f\n", resultado);
+                } else {
+                    printf("Unidades invalidas! Escolha valores entre 0 e 5.\n");
+                }
+
                 break;
             }
 
