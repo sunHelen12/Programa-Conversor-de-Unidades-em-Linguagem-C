@@ -28,28 +28,28 @@ float kelvinFahrenheit(float kelvin) {
 }
 
 // Funções de conversão de potencia
-float watts_para_kilowatts (float watts) {
-    return watts/1000.0;
+float watts_para_kilowatts(float watts) {
+    return watts / 1000.0;
 }
 
-float watts_para_cavalo_vapor (float watts) {
-    return watts/735.50;
+float watts_para_cavalo_vapor(float watts) {
+    return watts / 735.50;
 }
 
-float kilowatts_para_watts (float kilowatts) {
-    return kilowatts*1000.0;
+float kilowatts_para_watts(float kilowatts) {
+    return kilowatts * 1000.0;
 }
 
-float kilowatts_para_cavalo_vapor (float kilowatts) {
-    return kilowatts*1000.0/735.50;
+float kilowatts_para_cavalo_vapor(float kilowatts) {
+    return kilowatts * 1000.0 / 735.50;
 }
 
-float cavalo_vapor_para_watts (float cv) {
-    return cv*735.50;
+float cavalo_vapor_para_watts(float cv) {
+    return cv * 735.50;
 }
 
-float cavalo_vapor_para_kilowatts (float cv) {
-    return cv*735.50/1000.0;
+float cavalo_vapor_para_kilowatts(float cv) {
+    return cv * 735.50 / 1000.0;
 }
 
 // Funções de conversão de tempo
@@ -77,7 +77,7 @@ float horas_para_minutos(float horas) {
     return horas * 60;
 }
 
-//Funcões de conversão de velocidade
+// Funções de conversão de velocidade
 float kmParaMs(float valor) {
     return valor * 0.277778;
 }
@@ -138,7 +138,7 @@ void testar_conversao_potencia() {
     printf("Testes de conversão de potência passaram com sucesso!\n");
 }
 
-//Função para testar as convers~pes de velocidade
+// Função para testar as conversões de velocidade
 void testar_conversao_velocidade() {
     const float tolerancia = 0.001; // Ajuste na tolerância
 
@@ -308,7 +308,7 @@ void testar_menu_unidade_velocidade(int opcao_origem, int opcao_destino, float v
     }
 }
 
-    // Função para converter Litros
+// Função para converter Litros
 void Converter_Litros() {
     double litro, metro_c, ml_c;
     int converter;
@@ -397,8 +397,7 @@ int main() {
 
         switch (opcao_principal) {
 
-case 3: {//Conversão unidades de Volume
-
+            case 3: { // Conversão unidades de Volume
                 int escolha;
 
                 // Exibe o menu de escolha da unidade
@@ -407,17 +406,18 @@ case 3: {//Conversão unidades de Volume
 
                 // Verifica qual foi a escolha
                 if (escolha == 1) {
-                Converter_Litros();
+                    Converter_Litros();
                 } else if (escolha == 2) {
-                 Converter_Metros_Cubicos();
+                    Converter_Metros_Cubicos();
                 } else if (escolha == 3) {
-                 Converter_Mililitros();
+                    Converter_Mililitros();
                 } else {
-                printf("Opcao invalida!\n");
+                    printf("Opcao invalida!\n");
                 }
 
                 break; // Adicionado para evitar o fall-through
             }
+
             case 4: { // Conversão de temperatura
                 int unidade_temperatura;
                 float valor;
@@ -448,7 +448,7 @@ case 3: {//Conversão unidades de Volume
                 break;
             }
 
-            case 5:{
+            case 5: {
                 float valor;
                 char unidadeOrigem, unidadeDestino;
             
@@ -547,49 +547,48 @@ case 3: {//Conversão unidades de Volume
             }
 
             case 9: { // Conversão de Dados
-            const double fatorConversao = 8.0; // 8 bits corresponde a 1 byte
-            int unidadeOrigem, unidadeDestino;
-            double valor, resultado;
+                const double fatorConversao = 8.0; // 8 bits corresponde a 1 byte
+                int unidadeOrigem, unidadeDestino;
+                double valor, resultado;
 
-            printf("Conversor de unidades:\n");
-            printf("0. Bits\n");
-            printf("1. Bytes\n");
-            printf("2. Kilobytes (KB)\n");
-            printf("3. Megabytes (MB)\n");
-            printf("4. Gigabytes (GB)\n");
-            printf("5. Terabytes (TB)\n");
+                printf("Conversor de unidades:\n");
+                printf("0. Bits\n");
+                printf("1. Bytes\n");
+                printf("2. Kilobytes (KB)\n");
+                printf("3. Megabytes (MB)\n");
+                printf("4. Gigabytes (GB)\n");
+                printf("5. Terabytes (TB)\n");
 
-            printf("Escolha o tipo de unidade que voce deseja converter (0-5): ");
-            scanf("%d", &unidadeOrigem);
+                printf("Escolha o tipo de unidade que voce deseja converter (0-5): ");
+                scanf("%d", &unidadeOrigem);
 
-            printf("Escolha em qual tipo de unidade que voce deseja converter (0-5): ");
-            scanf("%d", &unidadeDestino);
+                printf("Escolha em qual tipo de unidade que voce deseja converter (0-5): ");
+                scanf("%d", &unidadeDestino);
 
-            printf("Digite o valor a ser convertido: ");
-            scanf("%lf", &valor);
+                printf("Digite o valor a ser convertido: ");
+                scanf("%lf", &valor);
 
-            if (unidadeOrigem >= 0 && unidadeOrigem <= 5 && unidadeDestino >= 0 && unidadeDestino <= 5) {
-                resultado = valor;
+                if (unidadeOrigem >= 0 && unidadeOrigem <= 5 && unidadeDestino >= 0 && unidadeDestino <= 5) {
+                    resultado = valor;
 
-                if (unidadeOrigem < unidadeDestino) {
-                    for (int i = unidadeOrigem; i < unidadeDestino; i++) {
-                        resultado /= (i == 0 ? fatorConversao : 1024);
+                    if (unidadeOrigem < unidadeDestino) {
+                        for (int i = unidadeOrigem; i < unidadeDestino; i++) {
+                            resultado /= (i == 0 ? fatorConversao : 1024);
+                        }
+                    } else if (unidadeOrigem > unidadeDestino) {
+                        for (int i = unidadeOrigem; i > unidadeDestino; i--) {
+                            resultado *= (i - 1 == 0 ? fatorConversao : 1024);
+                        }
                     }
-                } else if (unidadeOrigem > unidadeDestino) {
-                    for (int i = unidadeOrigem; i > unidadeDestino; i--) {
-                        resultado *= (i - 1 == 0 ? fatorConversao : 1024);
-                    }
+
+                    printf("O resultado da conversao eh: %.2f\n", resultado);
+                } else {
+                    printf("Unidades invalidas! Escolha valores entre 0 e 5.\n");
                 }
-
-                printf("O resultado da conversao eh: %.2f\n", resultado);
-            } else {
-                printf("Unidades invalidas! Escolha valores entre 0 e 5.\n");
-            }
 
                 break;
             }
 
-            
             case 10: { // Sair
                 printf("Saindo do programa...\n");
                 break;
